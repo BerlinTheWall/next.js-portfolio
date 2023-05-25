@@ -127,7 +127,6 @@ function ContactForm() {
           <button>Send Message</button>
         </div>
       </form>
-      <div id="notifications">
       {notification && (
         <Notification
           status={notification.status}
@@ -135,7 +134,6 @@ function ContactForm() {
           message={notification.message}
         />
       )}
-      </div>
     </section>
   );
 }
