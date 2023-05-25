@@ -4,7 +4,7 @@ import classes from './post-header.module.css';
 import { Post } from '@/types/post';
 
 function PostHeader(props: Post) {
-  const { title, image } = props;
+  const { title, image, content } = props;
 
   return (
     <header className={classes.header}>
