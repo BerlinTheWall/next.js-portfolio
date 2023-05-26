@@ -1,4 +1,4 @@
-This is a [Next.js]. The project is based on Maximilian Schwarzmüller's next.js course. (https://www.udemy.com/course/nextjs-react-the-complete-guide/) 
+The project is a next.js portfolio based on Maximilian Schwarzmüller's next.js course using SSR, nextJs routing, image optimization and other nextJs features. (https://www.udemy.com/course/nextjs-react-the-complete-guide/) 
 (https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
