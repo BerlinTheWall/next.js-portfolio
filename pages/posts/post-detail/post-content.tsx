@@ -1,14 +1,20 @@
 /* eslint-disable react/no-children-prop */
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import atomDark  from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
 
 import PostHeader from './post-header';
 import classes from './post-content.module.css';
 import { Post } from '@/types/post';
 import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
+
+SyntaxHighlighter.registerLanguage('js', js);
+SyntaxHighlighter.registerLanguage('css', css)
+
 interface Props {
   post: Post; 
 }
@@ -16,7 +22,7 @@ interface Props {
 function PostContent(props: Props) {
   const { post }: Props = props;
 
-  const imagePath = `/images/posts/${post.slug}/${post.image}`;
+  const imagePath = `/images/posts/${post?.slug}/${post?.image}`;
 
   interface CustomRenderers {
     p: (paragraph: { children?: any; node?: any }) => React.ReactElement;
@@ -38,16 +44,6 @@ function PostContent(props: Props) {
   }
 
   const customRenderers = {
-    // img(image) {
-    //   return (
-    //     <Image
-    //       src={`/images/posts/${post.slug}/${image.src}`}
-    //       alt={image.alt}
-    //       width={600}
-    //       height={300}
-    //     />
-    //   );
-    // },
     p(paragraph: any) {
       const { node } = paragraph;
 
@@ -57,7 +53,7 @@ function PostContent(props: Props) {
         return (
           <div className={classes.image}>
             <Image
-              src={`/images/posts/${post.slug}/${image.properties.src}`}
+              src={`/images/posts/${post?.slug}/${image?.properties.src}`}
               alt={image.alt}
               width={600}
               height={300}
@@ -84,8 +80,8 @@ function PostContent(props: Props) {
 
   return (
     <article className={classes.content}>
-      <PostHeader title={post.title} image={imagePath} content={''} />
-      <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
+      <PostHeader title={post?.title} image={imagePath} content={''} />
+      <ReactMarkdown components={customRenderers}>{post?.content}</ReactMarkdown>
     </article>
   );
 }

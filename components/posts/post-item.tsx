@@ -6,13 +6,14 @@ import { Post } from "@/types/post";
 
 function PostItem(props: Post) {
   const { title, image, excerpt, date, slug } = props;
-
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
+  let formattedDate = null;
+  if (date !== undefined) {
+    formattedDate = new Date(date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
   const imagePath = `/images/posts/${slug}/${image}`;
   const linkPath = `/posts/${slug}`;
 
@@ -30,7 +31,7 @@ function PostItem(props: Post) {
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
-          <time>{formattedDate}</time>
+          {formattedDate && <time>{formattedDate}</time>}
           <p>{excerpt}</p>
         </div>
       </Link>
